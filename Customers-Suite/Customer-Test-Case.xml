@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testCase id="be9e3ebb-e546-4fbc-b49f-a174e95fd4dd" discardOkResults="false" failOnError="true" failTestCaseOnErrors="true" keepSession="false" name="Customer Test Case" searchProperties="true" timeout="0" wsrmEnabled="false" wsrmVersion="1.0" wsrmAckTo="" zephyrTestName="" zephyrTestId="" xmlns:con="http://eviware.com/soapui/config">
+  <con:settings>
+    <con:setting id="be9e3ebb-e546-4fbc-b49f-a174e95fd4ddfileName">Customer-Test-Case</con:setting>
+  </con:settings>
+  <con:savedRecentRuns>1</con:savedRecentRuns>
+  <con:testStep type="datasource" name="Data Source" id="804776a6-5248-49c3-a609-f2dfde6626fb">
+    <con:settings/>
+    <con:config xsi:type="con:DataSourceStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <con:dataSource type="Excel">
+        <con:configuration>
+          <file>C:/Users/stephend/Downloads/Book 1 (3).xlsx</file>
+          <worksheet>Sheet1</worksheet>
+          <cell>A2</cell>
+          <ignoreEmpty>true</ignoreEmpty>
+          <evaluateFormulas>false</evaluateFormulas>
+        </con:configuration>
+      </con:dataSource>
+      <con:shared>true</con:shared>
+      <con:restartShared>true</con:restartShared>
+      <con:property>email</con:property>
+      <con:property>name</con:property>
+      <con:property>phone</con:property>
+      <con:property>balance</con:property>
+      <con:property>coupon</con:property>
+      <con:property>invoice</con:property>
+      <con:restartOnRun>true</con:restartOnRun>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="restrequest" name="Create Customer" id="f67cd0ec-714a-4e8e-bae0-ae6f93fbdcd8">
+    <con:settings/>
+    <con:config service="https://api.stripe.com" resourcePath="/v1/customers" methodName="Customer" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <con:restRequest name="Create Customer" id="69dc6c60-d608-426e-bc6e-d9b163792a22" mediaType="application/json" postQueryString="false">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="Authorization" value="Bearer sk_test_4eC39HqLyjWDarjtT1zdp7dc" xmlns="http://eviware.com/soapui/config"/></con:setting>
+        </con:settings>
+        <con:endpoint>https://api.stripe.com</con:endpoint>
+        <con:request/>
+        <con:originalUri>https://api.stripe.com/v1/customers</con:originalUri>
+        <con:assertion type="Valid HTTP Status Codes" id="b733397d-dd53-4080-9bde-0eb119950e73" name="Valid HTTP Status Codes">
+          <con:settings/>
+          <con:configuration>
+            <codes>200</codes>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="Response SLA Assertion" id="670611e1-564c-49bb-a26d-7e3d5fa8da9a" name="Response SLA" disabled="true">
+          <con:configuration>
+            <SLA>200</SLA>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters>
+          <con:entry key="balance" value="23"/>
+          <con:entry key="phone" value="${Data Source#phone}"/>
+          <con:entry key="name" value="${Data Source#name}"/>
+          <con:entry key="email" value="${Data Source#email}"/>
+        </con:parameters>
+        <con:parameterOrder>
+          <con:entry>email</con:entry>
+          <con:entry>name</con:entry>
+          <con:entry>phone</con:entry>
+          <con:entry>balance</con:entry>
+        </con:parameterOrder>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="restrequest" name="Retrieve a customer" id="e8e2692f-73a0-42d9-9346-c60f17879efe">
+    <con:settings/>
+    <con:config service="https://api.stripe.com" resourcePath="/v1/customers/{id}" methodName="Retrieve a customer" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <con:restRequest name="Retrieve a customer" id="678a0f50-ba79-485d-91c8-48c6da3dbd30" mediaType="application/json" postQueryString="false">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="Authorization" value="Bearer sk_test_4eC39HqLyjWDarjtT1zdp7dc" xmlns="http://eviware.com/soapui/config"/></con:setting>
+        </con:settings>
+        <con:endpoint>https://api.stripe.com</con:endpoint>
+        <con:request/>
+        <con:originalUri>https://api.stripe.com/v1/customers/cus_K5l0AEcAd3f5eD</con:originalUri>
+        <con:assertion type="Valid HTTP Status Codes" id="3be45697-974d-4c13-8c96-cc49fba18869" name="Valid HTTP Status Codes">
+          <con:settings/>
+          <con:configuration>
+            <codes>200</codes>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="Response SLA Assertion" id="95b09081-b922-4859-93d4-df36815730ac" name="Response SLA" disabled="true">
+          <con:configuration>
+            <SLA>200</SLA>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters>
+          <con:entry key="id" value="${Create Customer#Response#$['id']}"/>
+        </con:parameters>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="datasourceloop" name="Data Source Loop" id="f11896f0-b344-43a7-a755-7d993915fe43">
+    <con:settings/>
+    <con:config>
+      <dataSourceStep>Data Source</dataSourceStep>
+      <targetStep>Create Customer</targetStep>
+      <discardResults>true</discardResults>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="datasink" name="Data Sink" id="9c73bd6a-49fb-4c5c-b1df-92ed38d224fb">
+    <con:settings/>
+    <con:config xsi:type="con:DataSinkStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <con:dataSink type="Excel">
+        <con:configuration>
+          <file/>
+          <outfile>C:/Users/stephend/Downloads/Book.xlsx</outfile>
+          <worksheet>Sheet1</worksheet>
+          <cell>A2</cell>
+          <evaluateFormulas>false</evaluateFormulas>
+          <append>false</append>
+        </con:configuration>
+      </con:dataSink>
+      <con:properties>
+        <con:property>
+          <con:name>email</con:name>
+          <con:value>${Create Customer#Response#$['email']}</con:value>
+        </con:property>
+      </con:properties>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="restrequest" name="REST Request" id="921bd00f-3b85-4759-809b-c7befb271468">
+    <con:settings/>
+    <con:config service="https://api.stripe.com" resourcePath="/v1/customers/{id}" methodName="Retrieve" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <con:restRequest name="REST Request" id="466c6a27-7692-450e-a826-7109729b1ff4" mediaType="application/json" postQueryString="false">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="Authorization" value="Bearer sk_test_4eC39HqLyjWDarjtT1zdp7dc" xmlns="http://eviware.com/soapui/config"/></con:setting>
+        </con:settings>
+        <con:endpoint>https://api.stripe.com</con:endpoint>
+        <con:request/>
+        <con:originalUri>https://api.stripe.com/v1/customers/cus_K5m0w2Ua13jajf</con:originalUri>
+        <con:assertion type="Valid HTTP Status Codes" id="c900d039-5445-402e-96ac-9f5e395d4d68" name="Valid HTTP Status Codes" disabled="true">
+          <con:settings/>
+          <con:configuration>
+            <codes>200</codes>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="Response SLA Assertion" id="2ffdfa5a-4211-4211-87b2-855c81bc900a" name="Response SLA" disabled="true">
+          <con:configuration>
+            <SLA>200</SLA>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters>
+          <con:entry key="id" value="${Create Customer#Response#$['id']}"/>
+          <con:entry key="email" value="${Create Customer#Response#$['email']}"/>
+        </con:parameters>
+        <con:parameterOrder>
+          <con:entry>id</con:entry>
+          <con:entry>email</con:entry>
+        </con:parameterOrder>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:properties/>
+  <con:reportParameters/>
+  <con:breakPoints>
+    <con:testStepId>f67cd0ec-714a-4e8e-bae0-ae6f93fbdcd8</con:testStepId>
+    <con:status>NONE</con:status>
+    <con:properties/>
+  </con:breakPoints>
+  <con:breakPoints>
+    <con:testStepId>804776a6-5248-49c3-a609-f2dfde6626fb</con:testStepId>
+    <con:status>NONE</con:status>
+    <con:properties/>
+  </con:breakPoints>
+  <con:breakPoints>
+    <con:testStepId>e8e2692f-73a0-42d9-9346-c60f17879efe</con:testStepId>
+    <con:status>NONE</con:status>
+    <con:properties/>
+  </con:breakPoints>
+  <con:breakPoints>
+    <con:testStepId>f11896f0-b344-43a7-a755-7d993915fe43</con:testStepId>
+    <con:status>NONE</con:status>
+    <con:properties/>
+  </con:breakPoints>
+  <con:breakPoints>
+    <con:testStepId>9c73bd6a-49fb-4c5c-b1df-92ed38d224fb</con:testStepId>
+    <con:status>NONE</con:status>
+    <con:properties/>
+  </con:breakPoints>
+  <con:breakPoints>
+    <con:testStepId>921bd00f-3b85-4759-809b-c7befb271468</con:testStepId>
+    <con:status>NONE</con:status>
+    <con:properties/>
+  </con:breakPoints>
+</con:testCase>

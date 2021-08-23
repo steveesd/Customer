@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testCase id="717d6768-381e-49b3-818d-f2c5d14158ff" discardOkResults="false" failOnError="true" failTestCaseOnErrors="true" keepSession="false" name="Events" searchProperties="true" timeout="0" xmlns:con="http://eviware.com/soapui/config">
+  <con:settings>
+    <con:setting id="717d6768-381e-49b3-818d-f2c5d14158fffileName">Events</con:setting>
+  </con:settings>
+  <con:savedRecentRuns>1</con:savedRecentRuns>
+  <con:properties/>
+  <con:reportParameters/>
+</con:testCase>

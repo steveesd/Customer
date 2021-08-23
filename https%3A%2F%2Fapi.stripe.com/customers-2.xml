@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:resource name="customers 2" path="/v1/customers" id="ecc63daa-4e0d-445a-bb40-8970be731b59" xmlns:con="http://eviware.com/soapui/config">
+  <con:settings>
+    <con:setting id="ecc63daa-4e0d-445a-bb40-8970be731b59fileName">customers-2</con:setting>
+  </con:settings>
+  <con:parameters/>
+  <con:resource name="Retrieve" path="{id}" id="b18efd03-7c70-4df4-ac5f-0c1b334b8cc7">
+    <con:settings/>
+    <con:parameters>
+      <con:parameter required="true">
+        <con:name>id</con:name>
+        <con:value>id</con:value>
+        <con:style>TEMPLATE</con:style>
+        <con:default>id</con:default>
+      </con:parameter>
+    </con:parameters>
+    <con:method name="Retrieve a customer" id="2738ffa0-95a9-4014-b100-d59819ed0ec4" method="GET">
+      <con:settings/>
+      <con:parameters/>
+      <con:representation type="FAULT">
+        <con:mediaType>application/json</con:mediaType>
+        <con:status>401</con:status>
+        <con:params/>
+        <con:element xmlns:cus="https://api.stripe.com/v1/customers/cus_K5l0AEcAd3f5eD">cus:Fault</con:element>
+      </con:representation>
+      <con:representation type="RESPONSE">
+        <con:mediaType>application/json</con:mediaType>
+        <con:status>200</con:status>
+        <con:params/>
+        <con:element xmlns:cus="https://api.stripe.com/v1/customers/cus_K5l0AEcAd3f5eD">cus:Response</con:element>
+      </con:representation>
+      <con:request name="Retrieve a customer" id="678a0f50-ba79-485d-91c8-48c6da3dbd30" mediaType="application/json" postQueryString="false">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+        </con:settings>
+        <con:endpoint>https://api.stripe.com</con:endpoint>
+        <con:request/>
+        <con:credentials>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters>
+          <con:entry key="id" value="id"/>
+        </con:parameters>
+      </con:request>
+    </con:method>
+    <con:method name="Retrieve" id="194d5bea-7ea6-41d6-8506-2ff57abb5c50" method="POST">
+      <con:settings/>
+      <con:parameters>
+        <con:parameter required="true">
+          <con:name>email</con:name>
+          <con:value/>
+          <con:style>QUERY</con:style>
+          <con:default/>
+        </con:parameter>
+      </con:parameters>
+      <con:representation type="REQUEST">
+        <con:mediaType>application/json</con:mediaType>
+        <con:params/>
+      </con:representation>
+      <con:representation type="FAULT">
+        <con:mediaType>application/json</con:mediaType>
+        <con:status>401</con:status>
+        <con:params/>
+        <con:element xmlns:cus="https://api.stripe.com/v1/customers/cus_K5m0w2Ua13jajf">cus:Fault</con:element>
+      </con:representation>
+      <con:representation type="RESPONSE">
+        <con:mediaType>application/json</con:mediaType>
+        <con:status>200</con:status>
+        <con:params/>
+        <con:element xmlns:cus="https://api.stripe.com/v1/customers/cus_K5m0w2Ua13jajf">cus:Response</con:element>
+      </con:representation>
+      <con:request name="Update" id="466c6a27-7692-450e-a826-7109729b1ff4" mediaType="application/json" postQueryString="false">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="Authorization" value="Bearer sk_test_4eC39HqLyjWDarjtT1zdp7dc" xmlns="http://eviware.com/soapui/config"/></con:setting>
+        </con:settings>
+        <con:endpoint>https://api.stripe.com</con:endpoint>
+        <con:request/>
+        <con:credentials>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters/>
+        <con:parameterOrder>
+          <con:entry>id</con:entry>
+          <con:entry>email</con:entry>
+        </con:parameterOrder>
+      </con:request>
+    </con:method>
+  </con:resource>
+  <con:method name="Customer" id="30fb5e56-aab0-4c57-b149-5815742b7a28" method="POST">
+    <con:settings/>
+    <con:parameters>
+      <con:parameter required="true">
+        <con:name>email</con:name>
+        <con:value/>
+        <con:style>QUERY</con:style>
+        <con:default/>
+      </con:parameter>
+      <con:parameter required="true">
+        <con:name>name</con:name>
+        <con:value/>
+        <con:style>QUERY</con:style>
+        <con:default/>
+      </con:parameter>
+      <con:parameter required="true">
+        <con:name>phone</con:name>
+        <con:value/>
+        <con:style>QUERY</con:style>
+        <con:default/>
+      </con:parameter>
+      <con:parameter required="true">
+        <con:name>balance</con:name>
+        <con:value/>
+        <con:style>QUERY</con:style>
+        <con:default/>
+      </con:parameter>
+    </con:parameters>
+    <con:representation type="RESPONSE">
+      <con:mediaType>application/json</con:mediaType>
+      <con:status>200</con:status>
+      <con:params/>
+      <con:element xmlns:cus="https://api.stripe.com/v1/customers">cus:Response</con:element>
+    </con:representation>
+    <con:representation type="REQUEST">
+      <con:mediaType>application/json</con:mediaType>
+      <con:params/>
+    </con:representation>
+    <con:representation type="FAULT">
+      <con:mediaType>application/json</con:mediaType>
+      <con:status>401 400</con:status>
+      <con:params/>
+      <con:element xmlns:cus="https://api.stripe.com/v1/customers">cus:Fault</con:element>
+    </con:representation>
+    <con:request name="Create Customer" id="69dc6c60-d608-426e-bc6e-d9b163792a22" mediaType="application/json" postQueryString="false">
+      <con:settings>
+        <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+      </con:settings>
+      <con:endpoint>https://api.stripe.com</con:endpoint>
+      <con:request/>
+      <con:originalUri>https://api.stripe.com/v1/customers</con:originalUri>
+      <con:credentials>
+        <con:authType>No Authorization</con:authType>
+      </con:credentials>
+      <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+      <con:parameters/>
+      <con:parameterOrder>
+        <con:entry>email</con:entry>
+        <con:entry>name</con:entry>
+        <con:entry>phone</con:entry>
+        <con:entry>balance</con:entry>
+      </con:parameterOrder>
+    </con:request>
+  </con:method>
+</con:resource>
